@@ -10,6 +10,7 @@ const calcTempAmplitude = function (tempArr) {
     if (typeof tempArr[i] !== "number") {
       continue;
     }
+
     if (tempArr[i] < min) {
       min = tempArr[i];
     } else if (tempArr[i] > max) {

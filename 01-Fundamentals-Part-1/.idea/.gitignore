@@ -3,3 +3,10 @@
 /workspace.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+01-Fundamentals-Part-1.iml
+modules.xml
+vcs.xml
+workspace.xml
+# file: ~/.gitignore_global
+.DS_Store
+.idea

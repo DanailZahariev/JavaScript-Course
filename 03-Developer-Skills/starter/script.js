@@ -1,7 +1,7 @@
 "use strict";
 
 const temperatures = [3, -2, -6, -1, "error", 9, 13, 17, 15, 14, 9, 5];
-const temperatures2 = [-20, -10, -6, -1, "error", 9, 23, 17, 15, 14, 36, 5];
+const temperatures2 = [-20, -10, -6, -1, 9, 23, 17, 15, 14, 36, 5];
 
 const calcTempAmplitude = function (arr1, arr2) {
 

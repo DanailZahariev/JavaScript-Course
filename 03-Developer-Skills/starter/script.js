@@ -9,7 +9,7 @@ const calcTempAmplitude = function (arr1, arr2) {
     let min = 0;
     let max = 0;
     for (let i = 0; i < concat.length; i++) {
-        if (typeof concat[i] !== "number") {
+        if (typeof concat[i] !== 'number') {
             continue;
         }
 

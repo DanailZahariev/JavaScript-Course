@@ -34,6 +34,10 @@ const init = function () {
     player1Element.classList.remove('player--winner');
     player0Element.classList.add('player--active');
     player1Element.classList.remove('player--active');
+    const p1Name = prompt("Set player one name");
+    const p2Name = prompt("Set player two name");
+    document.getElementById("name--0").textContent = p1Name;
+    document.getElementById("name--1").textContent = p2Name;
 };
 
 init();

@@ -12,10 +12,6 @@ const restaurant = {
     starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
     mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-    order: function (staterIndex, mainIndex) {
-        return [this.starterMenu[staterIndex], this.mainMenu[mainIndex]]
-    },
-
     openingHours: {
         thu: {
             open: 12,
@@ -30,6 +26,29 @@ const restaurant = {
             close: 24,
         },
     },
+
+    order: function (staterIndex, mainIndex) {
+        return [this.starterMenu[staterIndex], this.mainMenu[mainIndex]];
+    },
+    orderDelivery: function ({
+                                 staterIndex = 1,
+                                 mainIndex = 0,
+                                 time = '20:00',
+                                 address,
+                             }) {
+        console.log(
+            `Oder received! ${this.starterMenu[staterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+        );
+    },
+    orderPasta: function (ing1, ing2, ing3) {
+        console.log(
+            `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
+        );
+    },
+
+    orderPizza: function (mainIngredient, ...otherIngredients) {
+        console.log(mainIngredient, otherIngredients)
+    }
 };
 
 // 01.Destructuring Arrays
@@ -47,7 +66,8 @@ const restaurant = {
 
  console.log(main, secondary)
 
- Switching variables
+ // Switching variables
+
  const temp = main;
  main = secondary;
  secondary = temp;
@@ -60,7 +80,8 @@ const restaurant = {
  const [starter, mainCourse] = restaurant.order(2, 0);
  console.log(starter, mainCourse)
 
- Nested destructuring
+// Nested destructuring
+
  const nested = [2, 4, [5, 6]];
  const [i, , j] = nested;
  console.log(i, j)
@@ -68,12 +89,12 @@ const restaurant = {
  const [i, , [j, k]] = nested;
  console.log(i, j, k);
 
- Default values
+ // Default values
+
  const [p = 1, q = 1, r = 1] = [8, 9]
  console.log(p, q, r)
 
-
-// 02.Destructuring Objects
+ // 02.Destructuring Objects
 
 const {name, openingHours, categories} = restaurant;
 console.log(name, openingHours, categories);
@@ -103,6 +124,68 @@ console.log(a, b)
 const {fri: {open: o, close: c}} = openingHours;
 console.log(o, c) */
 
+//03. The Spread Operator (...)
 
+const arr = [7, 8, 9];
+const newArr = [1, 2, ...arr];
+console.log(newArr);
+console.log(...newArr);
 
+const newMenu = [...restaurant.mainMenu, 'Gnocchi'];
+console.log(newMenu);
+
+// Copy array
+const mainMenuCopy = [...restaurant.mainMenu];
+
+// Join 2 arrays
+
+const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(menu);
+
+// Iterables: arrays, strings, maps, sets, BUT not Objects
+
+const str = 'Danail';
+const letters = [...str, ' ', 'Z.'];
+console.log(letters);
+console.log(...str);
+
+const ingredients = [
+    prompt("Let's make a pasta! " + ' Ingredient 1?'),
+    prompt('Ingredient 2?'),
+    prompt('Ingredient 3?'),
+];
+restaurant.orderPasta(...ingredients);
+
+// Objects
+
+const newRestaurant = {foundIn: 1988, ...restaurant, founder: 'Giuseppe'};
+console.log(newRestaurant);
+
+// Destructuring
+
+const [pizza, , risotto, ...otherFood] = [
+    ...restaurant.mainMenu,
+    ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherFood);
+
+// Objects
+
+const {sat, ...weekDays} = restaurant.openingHours;
+console.log(weekDays);
+
+// Functions
+
+const add = function (...numbers) {
+    let sum = 0;
+    for (let i = 0; i < numbers.length; i++) {
+        sum += numbers[i];
+    }
+    console.log(sum);
+};
+
+add(5, 5, 5);
+
+const x = [15, 15, 15];
+add(...x)
 

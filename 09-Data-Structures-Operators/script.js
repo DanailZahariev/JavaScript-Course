@@ -126,66 +126,218 @@ console.log(o, c) */
 
 //03. The Spread Operator (...)
 
-const arr = [7, 8, 9];
-const newArr = [1, 2, ...arr];
-console.log(newArr);
-console.log(...newArr);
-
-const newMenu = [...restaurant.mainMenu, 'Gnocchi'];
-console.log(newMenu);
+// const arr = [7, 8, 9];
+// const newArr = [1, 2, ...arr];
+// console.log(newArr);
+// console.log(...newArr);
+//
+// const newMenu = [...restaurant.mainMenu, 'Gnocchi'];
+// console.log(newMenu);
 
 // Copy array
-const mainMenuCopy = [...restaurant.mainMenu];
+// const mainMenuCopy = [...restaurant.mainMenu];
 
 // Join 2 arrays
 
-const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
-console.log(menu);
+// const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+// console.log(menu);
 
 // Iterables: arrays, strings, maps, sets, BUT not Objects
 
-const str = 'Danail';
-const letters = [...str, ' ', 'Z.'];
-console.log(letters);
-console.log(...str);
-
-const ingredients = [
-    prompt("Let's make a pasta! " + ' Ingredient 1?'),
-    prompt('Ingredient 2?'),
-    prompt('Ingredient 3?'),
-];
-restaurant.orderPasta(...ingredients);
+// const str = 'Danail';
+// const letters = [...str, ' ', 'Z.'];
+// console.log(letters);
+// console.log(...str);
+//
+// const ingredients = [
+//     prompt("Let's make a pasta! " + ' Ingredient 1?'),
+//     prompt('Ingredient 2?'),
+//     prompt('Ingredient 3?'),
+// ];
+// restaurant.orderPasta(...ingredients);
 
 // Objects
 
-const newRestaurant = {foundIn: 1988, ...restaurant, founder: 'Giuseppe'};
-console.log(newRestaurant);
+// const newRestaurant = {foundIn: 1988, ...restaurant, founder: 'Giuseppe'};
+// console.log(newRestaurant);
 
 // Destructuring
 
-const [pizza, , risotto, ...otherFood] = [
-    ...restaurant.mainMenu,
-    ...restaurant.starterMenu,
-];
-console.log(pizza, risotto, otherFood);
+// const [pizza, , risotto, ...otherFood] = [
+//     ...restaurant.mainMenu,
+//     ...restaurant.starterMenu,
+// ];
+// console.log(pizza, risotto, otherFood);
 
 // Objects
 
-const {sat, ...weekDays} = restaurant.openingHours;
-console.log(weekDays);
+// const {sat, ...weekDays} = restaurant.openingHours;
+// console.log(weekDays);
 
 // Functions
 
-const add = function (...numbers) {
-    let sum = 0;
-    for (let i = 0; i < numbers.length; i++) {
-        sum += numbers[i];
-    }
-    console.log(sum);
+// const add = function (...numbers) {
+//     let sum = 0;
+//     for (let i = 0; i < numbers.length; i++) {
+//         sum += numbers[i];
+//     }
+//     console.log(sum);
+// };
+//
+// add(5, 5, 5);
+//
+// const x = [15, 15, 15];
+// add(...x)
+
+// 04. Short Circuiting (&& and ||)
+
+// Use ANY data type, return ANY data type, short-circuiting
+// restaurant.numGuest is undefined => falsy value
+
+// console.log('-----OR-----')
+
+// setting a default value
+// restaurant.numGuest = 0;
+// const guest1 = restaurant.numGuest ? restaurant.numGuest : 10;
+// console.log(guest1)
+//
+// const guest2 = restaurant.numGuest || 10;
+// console.log(guest2);
+//
+// console.log('-----AND-----')
+//
+// if (restaurant.orderPizza) {
+//     restaurant.orderPizza('mushroom', 'spinach')
+// }
+//
+// restaurant.orderPizza && restaurant.orderPizza('mushroom', 'spinach')
+
+// 05. The Nullish Coalescing Operator (??)
+
+// restaurant.numGuest = 0;
+// const guest = restaurant.numGuest ? restaurant.numGuest : 10;
+// console.log(guest)
+
+// Nullish values : null and undefined
+// const guestCorrect = restaurant.numGuest ?? 10;
+// console.log(guestCorrect)
+
+// 06. Logical Assignment Operators
+
+const rest1 = {
+    name: 'Capri',
+    // numGuest: 20,
+    numGuest: 0,
 };
 
-add(5, 5, 5);
+const rest2 = {
+    name: 'La Piazza',
+    owner: 'Rossi',
+};
 
-const x = [15, 15, 15];
-add(...x)
+// rest1.numGuest = rest1.numGuest || 10;
+// rest2.numGuest = rest2.numGuest || 10;
 
+// OR assigment operator
+// rest1.numGuest ||= 10;
+// rest2.numGuest ||= 10;
+
+// Nullish assigment operator (null or undefined)
+
+// rest1.numGuest ??= 10;
+// rest2.numGuest ??= 10;
+
+// AND assigment operator
+
+// rest1.owner = rest1.owner && '<ANONYMOUS>';
+// rest2.owner = rest2.owner && '<ANONYMOUS>';
+
+// rest1.owner &&= '<ANONYMOUS>';
+
+// is replaced by '<ANONYMOUS>', because the value is true
+// rest2.owner &&= '<ANONYMOUS>';
+
+// console.log(rest1)
+// console.log(rest2)
+
+// 01. CODING CHALLENGE
+
+const game = {
+    team1: 'Bayern Munich', team2: 'Borrussia Dortmund', players: [
+        [
+            'Neuer',
+            'Pavard',
+            'Martinez',
+            'Alaba',
+            'Davies',
+            'Kimmich',
+            'Goretzka',
+            'Coman',
+            'Muller',
+            'Gnarby',
+            'Lewandowski',
+        ], [
+            'Burki',
+            'Schulz',
+            'Hummels',
+            'Akanji',
+            'Hakimi',
+            'Weigl',
+            'Witsel',
+            'Hazard',
+            'Brandt',
+            'Sancho',
+            'Gotze',
+        ],],
+    score: '4:0',
+    scored: ['Lewandowski', 'Gnarby', 'Lewandowski',
+        'Hummels'],
+    date: 'Nov 9th, 2037',
+    odds: {
+        team1: 1.33,
+        x: 3.25,
+        team2: 6.5,
+    },
+};
+
+// 1.
+
+const [players1, players2] = game.players;
+console.log(players1, players2)
+
+//2.
+
+const [gk, ...filedPlayers] = players1;
+console.log(gk, filedPlayers);
+
+//3.
+
+const allPlayers = [...players1, ...players2];
+console.log(allPlayers)
+
+//4.
+
+const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+console.log(players1Final)
+
+//5.
+
+const {odds: {team1, x: draw, team2}} = game;
+console.log(team1, draw, team2)
+
+//6.
+
+const printGoals = function (...players) {
+    console.log(`${players.length} goals where scored`)
+    console.log(players.toString())
+};
+
+
+printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
+printGoals('Lewandowski', 'Kimmich');
+printGoals(...game.scored)
+
+//7.
+
+team1 < team2 && console.log('Team 1 is more likely to win')
+team1 > team2 && console.log('Team 2 is more likely to win')

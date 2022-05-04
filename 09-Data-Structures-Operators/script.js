@@ -5,6 +5,22 @@ const flights =
     '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
 // Data needed for first part of the section
+
+const openingHours = {
+    thu: {
+        open: 12,
+        close: 22,
+    },
+    fri: {
+        open: 11,
+        close: 23,
+    },
+    sat: {
+        open: 0, // Open 24 hours
+        close: 24,
+    },
+};
+
 const restaurant = {
     name: 'Classico Italiano',
     location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -12,43 +28,32 @@ const restaurant = {
     starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
     mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-    openingHours: {
-        thu: {
-            open: 12,
-            close: 22,
-        },
-        fri: {
-            open: 11,
-            close: 23,
-        },
-        sat: {
-            open: 0, // Open 24 hours
-            close: 24,
-        },
-    },
+    openingHours,
 
-    order: function (staterIndex, mainIndex) {
+    order(staterIndex, mainIndex) {
         return [this.starterMenu[staterIndex], this.mainMenu[mainIndex]];
     },
-    orderDelivery: function ({
-                                 staterIndex = 1,
-                                 mainIndex = 0,
-                                 time = '20:00',
-                                 address,
-                             }) {
+
+    orderDelivery({
+                      staterIndex = 1,
+                      mainIndex = 0,
+                      time = '20:00',
+                      address,
+                  }) {
         console.log(
             `Oder received! ${this.starterMenu[staterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
         );
     },
-    orderPasta: function (ing1, ing2, ing3) {
+
+    orderPasta(ing1, ing2, ing3) {
         console.log(
             `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
         );
     },
 
-    orderPizza: function (mainIngredient, ...otherIngredients) {
+    orderPizza(mainIngredient, ...otherIngredients) {
         console.log(mainIngredient, otherIngredients)
-    }
+    },
 };
 
 // 01.Destructuring Arrays
@@ -187,7 +192,7 @@ console.log(o, c) */
 // add(5, 5, 5);
 //
 // const x = [15, 15, 15];
-// add(...x)
+// add(...x);
 
 // 04. Short Circuiting (&& and ||)
 
@@ -199,7 +204,7 @@ console.log(o, c) */
 // setting a default value
 // restaurant.numGuest = 0;
 // const guest1 = restaurant.numGuest ? restaurant.numGuest : 10;
-// console.log(guest1)
+// console.log(guest1);
 //
 // const guest2 = restaurant.numGuest || 10;
 // console.log(guest2);
@@ -207,33 +212,33 @@ console.log(o, c) */
 // console.log('-----AND-----')
 //
 // if (restaurant.orderPizza) {
-//     restaurant.orderPizza('mushroom', 'spinach')
+//     restaurant.orderPizza('mushroom', 'spinach');
 // }
 //
-// restaurant.orderPizza && restaurant.orderPizza('mushroom', 'spinach')
+// restaurant.orderPizza && restaurant.orderPizza('mushroom', 'spinach');
 
 // 05. The Nullish Coalescing Operator (??)
 
 // restaurant.numGuest = 0;
 // const guest = restaurant.numGuest ? restaurant.numGuest : 10;
-// console.log(guest)
+// console.log(guest);
 
 // Nullish values : null and undefined
 // const guestCorrect = restaurant.numGuest ?? 10;
-// console.log(guestCorrect)
+// console.log(guestCorrect);
 
 // 06. Logical Assignment Operators
 
-const rest1 = {
-    name: 'Capri',
-    // numGuest: 20,
-    numGuest: 0,
-};
-
-const rest2 = {
-    name: 'La Piazza',
-    owner: 'Rossi',
-};
+// const rest1 = {
+//     name: 'Capri',
+//     // numGuest: 20,
+//     numGuest: 0,
+// };
+//
+// const rest2 = {
+//     name: 'La Piazza',
+//     owner: 'Rossi',
+// };
 
 // rest1.numGuest = rest1.numGuest || 10;
 // rest2.numGuest = rest2.numGuest || 10;
@@ -257,87 +262,136 @@ const rest2 = {
 // is replaced by '<ANONYMOUS>', because the value is true
 // rest2.owner &&= '<ANONYMOUS>';
 
-// console.log(rest1)
-// console.log(rest2)
+// console.log(rest1);
+// console.log(rest2);
 
 // 01. CODING CHALLENGE
 
-const game = {
-    team1: 'Bayern Munich', team2: 'Borrussia Dortmund', players: [
-        [
-            'Neuer',
-            'Pavard',
-            'Martinez',
-            'Alaba',
-            'Davies',
-            'Kimmich',
-            'Goretzka',
-            'Coman',
-            'Muller',
-            'Gnarby',
-            'Lewandowski',
-        ], [
-            'Burki',
-            'Schulz',
-            'Hummels',
-            'Akanji',
-            'Hakimi',
-            'Weigl',
-            'Witsel',
-            'Hazard',
-            'Brandt',
-            'Sancho',
-            'Gotze',
-        ],],
-    score: '4:0',
-    scored: ['Lewandowski', 'Gnarby', 'Lewandowski',
-        'Hummels'],
-    date: 'Nov 9th, 2037',
-    odds: {
-        team1: 1.33,
-        x: 3.25,
-        team2: 6.5,
-    },
-};
+// const game = {
+//     team1: 'Bayern Munich', team2: 'Borrussia Dortmund', players: [
+//         [
+//             'Neuer',
+//             'Pavard',
+//             'Martinez',
+//             'Alaba',
+//             'Davies',
+//             'Kimmich',
+//             'Goretzka',
+//             'Coman',
+//             'Muller',
+//             'Gnarby',
+//             'Lewandowski',
+//         ], [
+//             'Burki',
+//             'Schulz',
+//             'Hummels',
+//             'Akanji',
+//             'Hakimi',
+//             'Weigl',
+//             'Witsel',
+//             'Hazard',
+//             'Brandt',
+//             'Sancho',
+//             'Gotze',
+//         ],],
+//     score: '4:0',
+//     scored: ['Lewandowski', 'Gnarby', 'Lewandowski',
+//         'Hummels'],
+//     date: 'Nov 9th, 2037',
+//     odds: {
+//         team1: 1.33,
+//         x: 3.25,
+//         team2: 6.5,
+//     },
+// };
+//
+// // 1.
+//
+// const [players1, players2] = game.players;
+// console.log(players1, players2);
+//
+// //2.
+//
+// const [gk, ...filedPlayers] = players1;
+// console.log(gk, filedPlayers);
+//
+// //3.
+//
+// const allPlayers = [...players1, ...players2];
+// console.log(allPlayers);
+//
+// //4.
+//
+// const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+// console.log(players1Final);
+//
+// //5.
+//
+// const {odds: {team1, x: draw, team2}} = game;
+// console.log(team1, draw, team2);
+//
+// //6.
+//
+// const printGoals = function (...players) {
+//     console.log(`${players.length} goals where scored`);
+//     console.log(players.toString());
+// };
+//
+//
+// printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
+// printGoals('Lewandowski', 'Kimmich');
+// printGoals(...game.scored);
+//
+// //7.
+//
+// team1 < team2 && console.log('Team 1 is more likely to win');
+// team1 > team2 && console.log('Team 2 is more likely to win');
 
-// 1.
 
-const [players1, players2] = game.players;
-console.log(players1, players2)
+// 07. Looping Arrays: The for-of Loop
 
-//2.
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+//
+// for (const item of menu) {
+//     console.log(item);
+// }
 
-const [gk, ...filedPlayers] = players1;
-console.log(gk, filedPlayers);
+// destruction
 
-//3.
-
-const allPlayers = [...players1, ...players2];
-console.log(allPlayers)
-
-//4.
-
-const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
-console.log(players1Final)
-
-//5.
-
-const {odds: {team1, x: draw, team2}} = game;
-console.log(team1, draw, team2)
-
-//6.
-
-const printGoals = function (...players) {
-    console.log(`${players.length} goals where scored`)
-    console.log(players.toString())
-};
+// for (const [i, el] of menu.entries()) {
+//     console.log(`${i + 1}: ${el}`);
+// }
 
 
-printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
-printGoals('Lewandowski', 'Kimmich');
-printGoals(...game.scored)
+// 08. Enhanced Object Literals
 
-//7.
+// console.log(restaurant);
 
-team1 < team2 && console.log('Team 1 is more likely to win')
-team1 > team2 && console.log('Team 2 is more likely to win')
+// 09. Optional Chaining (?.)
+
+// With optional chaining
+
+// console.log(restaurant.openingHours.mon?.open);
+
+// Example
+
+// const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// for (const day of days) {
+//
+//     const open = restaurant.openingHours[day]?.open ?? 'closed';
+//     console.log(`On ${day}, we open at ${open}`)
+// }
+//
+// // Method
+//
+// // True method exist
+// console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+//
+// // False method does not exist, and we go to second operand
+// console.log(restaurant.orderIce?.(0, 1) ?? 'Method does not exist');
+//
+// // Arrays
+//
+// const users = [{name: 'Dani', email: 'hello@hello.com'}];
+//
+// console.log(users[0]?.name ?? 'user array empty');
